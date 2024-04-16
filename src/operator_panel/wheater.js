@@ -1,18 +1,12 @@
-import React, {
-  useState,
-  useEffect
-} from "react"
-import Wheater from "../lib_ui/hum_card2/wheater.js"
-
+import React, { useState, useEffect } from "react";
+import Wheater from "../lib_ui/air_card/wheater.js";
 
 const WheaterUI = () => {
-
-  return(
-    <div>
-      <Wheater />
-    </div>
-  );
-
-}
+    return (
+        <div>
+            <Wheater />
+        </div>
+    );
+};
 
 export default WheaterUI;
