@@ -33,7 +33,7 @@ const Navigation = ({ label, isCek, onSpeak, submit, title }) => {
                         <i class='i-home fa fa-user'></i>
                     </button>
                     <button class='home3'>
-                        <i class='i-home fa fa-square-plus'></i>
+                        <i class='i-home fa-regular fa-square-plus'></i>
                     </button>
                     <button class='home4'>
                         <i class='i-home fa fa-gear'></i>
