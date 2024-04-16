@@ -21,7 +21,7 @@ function App () {
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          "Bearer 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"
+          "Bearer"
       }
     })
       .then((res) => {
