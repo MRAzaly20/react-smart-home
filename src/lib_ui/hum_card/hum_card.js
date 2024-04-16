@@ -54,7 +54,7 @@ const HumCard = ({ label, isCek, onCheckboxChange, submit, title }) => {
                 <Cloud />
                 <div class='info'>
                     <h1 class='suhu'>
-                        36 {/*{profileData.wh}*/}
+                        35 {/*{profileData.wh}*/}
                         <h4 class='degree'>°C {/*{profileData.deg}*/}</h4>
                     </h1>
                     <div class='line'></div>
