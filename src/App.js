@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./auth/Home";
 import Login from "./auth/Login";
 import SignUp from "./auth/Signup";
-import yourapp from "./App_";
+import YourApp from "./App_";
 import { AuthProvider } from "./auth/auth";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
                         <Route exact path='/' element={<Home />} />
                         <Route exact path='/login' element={<Login />} />
                         <Route exact path='/signup' element={<SignUp />} />
-                        <Route exact path='/app' element={<yourapp />} />
+                        <Route exact path='/app' element={<YourApp />} />
                     </Routes>
                 </BrowserRouter>
             </div>

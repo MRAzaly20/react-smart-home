@@ -7,7 +7,7 @@ import WheaterUI from "./operator_panel/wheater.js";
 import NavBar from "./operator_panel/NavBar.js";
 import "./App.css";
 
-function yourapp() {
+function YourApp() {
     const [data, setData] = useState({
         message: "Hello, Flask!"
     });
@@ -77,4 +77,4 @@ function yourapp() {
     );
 }
 
-export default yourapp;
+export default YourApp;
