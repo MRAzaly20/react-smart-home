@@ -1,0 +1,12 @@
+.transcript{
+  font-size: 10px;
+  color: #fff;
+}
+
+.res{
+  font-size: 10px;
+  color: #fff;
+}
+.nav-cnt{
+  z-index: 1000000;
+}

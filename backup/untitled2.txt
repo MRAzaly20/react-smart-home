@@ -1,0 +1,158 @@
+import React, {
+  useEffect,
+  useState,
+  useRef
+} from 'react';
+import SpeechRecognition, {
+  useSpeechRecognition
+} from 'react-speech-recognition';
+import axios from "axios";
+
+const Dictaphone1 = () => {
+  const spanRef = useRef(null);
+  const divRef = useRef(null);
+  const [message,
+    setMessage] = useState('');
+  const timeoutRef = useRef(null);
+  const [apiResponse,
+    setApiResponse] = useState('');
+  const [text,
+    setText] = useState('');
+  const commands = [{
+    command: 'reset',
+    callback: () => resetTranscript()
+  },
+    {
+      command: 'shut up',
+      callback: () => setMessage('I wasn\'t talking.')
+    },
+    {
+      command: 'Hello',
+      callback: () => setMessage('Hi there!')
+    },
+  ]
+  const {
+    transcript,
+    interimTranscript,
+    finalTranscript,
+    resetTranscript,
+    listening,
+  } = useSpeechRecognition({
+      commands
+    });
+
+  const handleApiResponse = (data) => {
+    setApiResponse(data.choices[0].text);
+  };
+
+  const sendDataAPI = (data) => {
+    const response = fetch('/api/send_ai', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = response.json();
+    return result;
+  };
+
+  const handleSubmit = async (data) => {
+    await axios({
+      method: "POST",
+      url: "https://api.openai.com/v1/completions",
+      data: {
+        prompt: `
+        ###periksa makna kalimat ${data}, jika memiliki makna yang sama untuk menyalakan lampu B dan lampu A maka balas hanya dengan "on lampu B on lampu A"
+        ###periksa makna kalimat ${data}, jika memiliki makna yang sama untuk memmatikan lampu B dan matikan lampu A maka balas hanya dengan "off lampu B off lampu A"
+        ###periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "nyalakan lampu A" maka balas hanya dengan "on lampu A"
+        ###periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "matikan lampu A" maka balas hanya dengan "off lampu A"
+        ###periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "berapa suhu di kota" maka balas hanya dengan "suhu kota 24°C"
+        ###periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "nyalakan lampu B" maka balas hanya dengan "on lampu B"
+        ###periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "matikan lampu B" maka balas hanya dengan "off lampu B"
+        ###periksa makna kalimat ${data}, jika memiliki makna yang sama untuk meminta suhu ruangan  maka balas hanya dengan "suhu ruangan saat ini 20°C"
+
+        `,
+        max_tokens: 1000,
+        temperature: 0.5,
+        top_p: 1,
+        frequency_penalty: 0.0,
+        presence_penalty: 0.6,
+        model: "text-davinci-003",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+        "Bearer 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"
+      }
+    })
+    .then((res) => {
+      setApiResponse(res.data.choices[0].text);
+      sendDataAPI(res.data.choices[0].text);
+    })
+    .catch((e) => {
+      console.log(e.message, e);
+      console.log(e.message, e);
+    });
+
+  };
+
+
+  useEffect(() => {
+    if (finalTranscript !== '') {
+      console.log('Got final result:', finalTranscript);
+    }
+  },
+    [interimTranscript,
+      finalTranscript]);
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return null;
+  }
+
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    console.log('Your browser does not support speech recognition software! Try Chrome desktop, maybe?');
+  }
+  const listenContinuously = () => {
+    SpeechRecognition.startListening({
+      continuous: true,
+    });
+
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      /*setApiResponse("");*/
+      setText(spanRef.current.textContent)
+      handleSubmit(spanRef.current.textContent);
+      SpeechRecognition.stopListening();
+      resetTranscript();
+      /*sendDataAPI(divRef.current.textContent);*/
+    }, 5000);
+
+  };
+  return (
+    <div>
+     <div>
+       <span>
+         listening:
+         {' '}
+         {listening ? 'on': 'off'}
+       </span>
+       <div>
+         <button type="button" onClick={resetTranscript}>Reset</button>
+         <button type="button" onClick={listenContinuously}>Listen</button>
+         <button type="button" onClick={SpeechRecognition.stopListening}>Stop</button>
+    </div>
+    </div>
+     <div>
+       {message}
+    </div>
+     <div>
+       <span ref={spanRef}>{transcript}</span>
+       <div ref={divRef}>
+        { apiResponse }
+      </div>
+    </div>
+    </div>
+  );
+};
+
+export default Dictaphone1;

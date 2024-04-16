@@ -1,0 +1,62 @@
+.glassmorphism-card {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: #69ddfaff;
+}
+
+.glassmorphism-card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #69ddfaff;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+.glassmorphism-card__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+
+.button {
+  border: 2px solid blue;
+  background: #11328b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: background-size 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.button:active {
+  background-size: 200% auto;
+  transform: translate(-50%, -50%);
+  transition: background-size 3s ease-in;
+  background: #4462d0;
+  cursor: pointer;
+  animation-delay: sscale-in-center25s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.button:active {
+  /*background-size: 100% auto;*/
+  transform: scale(1.1);
+}
+
+@keyframes scale-in-center {
+  0% {
+    background: #4462d0;
+    opacity: 1;
+  }
+  100% {
+    background: #11328b;
+    opacity: 1;
+  }
+}

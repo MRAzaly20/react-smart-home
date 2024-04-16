@@ -1,0 +1,181 @@
+:root {
+  font-size: 20px;
+  box-sizing: inherit;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+p:not(:last-child) {
+  margin-bottom: 1.5em;
+}
+
+.card-wh{
+  position: absolute;
+  top: 2px;
+  left: 20px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 200px;
+  height: 1px;
+  padding: 25px;
+
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-top:none;
+  border-radius: 0 0 20px 20px;
+  background-color: rgba(255, 0.7, 255, 0.01);
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  backdrop-filter: blur(50px);
+}
+
+.hum-room{
+  position: absolute;
+  top: -7px;
+  left: 11%;
+  color:#fff;
+  text-shadow: 0 0 2px #fff;
+  font-size: 15px;
+}
+.deg-room{
+  position: absolute;
+  top: -14px;
+  left: 118%;
+  color:#fff;
+  text-shadow: 0 0 2px #fff;
+  font-size: 14px;
+}
+
+.i-room{
+  position: absolute;
+  top: 12px;
+  left: 10%;
+  color: #fff;
+  font-size: 10px;
+  opacity: 0.65;
+}
+
+.hum-room2{
+  position: absolute;
+  top: -7px;
+  left: 44%;
+  color:#fff;
+  text-shadow: 0 0 2px #fff;
+  font-size: 15px;
+}
+.deg-room2{
+  position: absolute;
+  top: -14px;
+  left: 118%;
+  color:#fff;
+  text-shadow: 0 0 2px #fff;
+  font-size: 14px;
+}
+
+.i-room2{
+  position: absolute;
+  top: 12px;
+  left: 43%;
+  color: #fff;
+  font-size: 10px;
+  opacity: 0.65;
+}
+
+.hum-room3{
+  position: absolute;
+  top: -7px;
+  left: 74%;
+  color:#fff;
+  text-shadow: 0 0 2px #fff;
+  font-size: 15px;
+}
+.deg-room3{
+  position: absolute;
+  top: -14px;
+  left: 118%;
+  color:#fff;
+  text-shadow: 0 0 2px #fff;
+  font-size: 14px;
+}
+
+.i-room3{
+  position: absolute;
+  top: 12px;
+  left: 73%;
+  color: #fff;
+  font-size: 10px;
+  opacity: 0.65;
+}
+
+
+
+
+
+/*.card-footer {
+  font-size: 0.65em;
+  color: #446;
+}
+
+.suhu{
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  color:#fff;
+  text-shadow: 0 0 5px #fff;
+  font-size: 50px;
+}
+
+.degree{
+  font-size: 26px;
+  position: absolute;
+  top: -31px;
+  left: 100%;
+  text-shadow: 0 0 5px #fff;
+}
+
+.date{
+  color: #fff;
+  position: absolute;
+  top: -17px;
+  left: 7%;
+  font-size: 12px;
+}
+
+.dt-cnt{
+  width: 100px;
+  height: 19px;
+  border-radius: 15px;
+  position: absolute;
+  left: 2vh;
+  top: 93px;
+  background: transparent;
+  /*border: .5px solid #b1b1b1;*/
+  /*
+  box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.25);
+}*/
+/*
+.line{
+  width: 112px;
+  height: 1.2px;
+  background: #b1b1b1;
+  position: absolute;
+  top: 78px;
+  left: 51%;
+}
+
+.info-wh{
+  position: absolute;
+  top: 51px;
+  left: 51%;
+  color: #d4d7d8;
+}*/

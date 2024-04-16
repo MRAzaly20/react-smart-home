@@ -1,0 +1,413 @@
+import React, {
+  useState
+} from 'react';
+
+import Card from './lib_/card/Card.js';
+import "./App.css"
+
+function App() {
+  const [selected,
+    setSelected] = useState([]);
+
+  const [data,
+    setData] = useState({
+      message: 'Hello, Flask!'
+    });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await sendData(data);
+    console.log(result);
+  };
+
+  const handleChange = (e) => {
+    setData({
+      ...data, [e.target.name]: e.target.value
+    });
+  };
+
+  const sendData = (data) => {
+    const response = fetch('/api/send_data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = response.json();
+    return result;
+  };
+
+  ///////////////////////
+  //     FUNGSI 2     //
+  /////////////////////
+  const handleCheckboxChange = (event) => {
+    const {
+      value
+    } = event.target;
+    if (selected.includes(value)) {
+      setSelected(selected.filter(item => item !== value));
+      setData2({
+        ...data2, message2: selected.filter(item => item !== value)
+      });
+      handleSubmit2();
+    } else {
+      setSelected([...selected, value]);
+      setData2({
+        ...data2, message2: value
+      });
+      handleSubmit2();
+    }
+  };
+
+  const [data2,
+    setData2] = useState({
+      message2: "hello"
+    });
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+    const result2 = await sendData2(data2);
+    console.log(result2);
+  };
+
+  const handleChange2 = (event) => {
+    setData2({
+      ...data2, message2: selected
+    });
+  };
+
+  const sendData2 = (data2) => {
+    const response = fetch('/api/kirim', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data2)
+    });
+    const result2 = response.json();
+    return result2;
+  };
+
+  return(
+    <div>
+  <div class="blur"></div>
+  <form onSubmit={handleSubmit}>
+    <input type="text" name="message" onChange={handleChange} />
+    <button type="submit">Send Data</button>
+    </form>
+
+    <div className="lamp">
+      <Card
+        label="Option 2"
+        isCek={selected.includes("Option 2")}
+        onCheckboxChange={handleCheckboxChange}
+
+        />
+    </div>
+    <div className="lamp2">
+      <Card
+        label="Option 1"
+        isCek={ selected.includes("Option 1")}
+        onCheckboxChange={ handleCheckboxChange }
+
+        />
+    </div>
+    <div className="lamp3">
+      <Card
+        label="Option 3"
+        isCek={selected.includes("Option 3")}
+        onCheckboxChange={handleCheckboxChange}
+
+        />
+    </div>
+    <div className="lamp4">
+      <Card
+        label="Option 4"
+        isCek={selected.includes("Option 4")}
+        onCheckboxChange={handleCheckboxChange}
+
+        />
+    </div>
+    <div class="blur2"></div>
+      {
+    /*<form onSubmit={handleSubmit2}>
+      <input type="text" name="message2" onChange={handleChange2} />
+      <button type="submit">Send Data2</button>
+      </form>*/
+    }
+  </div>
+
+);
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+import React, {
+  useState,
+  useEffect
+} from 'react';
+
+import Card from './lib_/card/Card.js';
+import "./App.css"
+
+function App() {
+  const [selected,
+    setSelected] = useState([]);
+
+  const [data,
+    setData] = useState({
+      message: 'Hello, Flask!'
+    });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await sendData(data);
+    console.log(result);
+  };
+
+  const handleChange = (e) => {
+    setData({
+      ...data, [e.target.name]: e.target.value
+    });
+  };
+
+  const sendData = (data) => {
+    const response = fetch('/api/send_data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = response.json();
+    return result;
+  };
+
+  ///////////////////////
+  //     FUNGSI 2     //
+  /////////////////////
+
+  const handleCheckboxChange = (event) => {
+    const {
+      value
+    } = event.target;
+    if (selected.includes(value)) {
+      setSelected(selected.filter(item => item !== value));
+      setData2({
+        ...data2, message2: selected.filter(item => item !== value)
+      });
+
+    } else {
+      setSelected([...selected, value]);
+      setData2({
+        ...data2, message2: value
+      });
+    }
+  };
+
+  const [data2,
+    setData2] = useState({
+      message2: "hello"
+    });
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+    const result2 = await sendData2(data2);
+    console.log(result2);
+  };
+
+  const handleChange2 = (event) => {
+    setData2({
+      ...data2, message2: selected
+    });
+  };
+
+  const sendData2 = () => {
+    const response = fetch('/api/kirim', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data2)
+    });
+    const result2 = response.json();
+    return result2;
+  };
+
+  return(
+    <div>
+  <div class="blur"></div>
+    {/*<form onSubmit={handleSubmit}>
+      <input type="text" name="message" onChange={handleChange} />
+      <button type="submit">Send Data</button>
+    </form>*/}
+    <div>
+      <button value="data kamu" onChange={handleSubmit} onClick={handleChange}>submit</button>
+    </div>
+      <div className="lamp">
+      <Card
+        label="Option 2"
+        isCek={selected.includes("Option 2")}
+        onCheckboxChange={sendData2}
+
+        />
+    </div>
+      <div className="lamp2">
+      <Card
+        label="Option 1"
+        isCek={ selected.includes("Option 1")}
+        onCheckboxChange={ handleCheckboxChange }
+
+        />
+    </div>
+      <div className="lamp3">
+      <Card
+        label="Option 3"
+        isCek={selected.includes("Option 3")}
+        onCheckboxChange={handleCheckboxChange}
+
+        />
+    </div>
+      <div className="lamp4">
+      <Card
+        label="Option 4"
+        isCek={selected.includes("Option 4")}
+        onCheckboxChange={handleCheckboxChange}
+
+        />
+    </div>
+      <div class="blur2"></div>
+      {
+      /*<form onSubmit={handleSubmit2}>
+      <input type="text" name="message2" onChange={handleChange2} />
+      <button type="submit">Send Data2</button>
+      </form>*/
+      } < /div>
+
+    );
+      }
+
+      export default App;
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+import React, {
+  useEffect,
+  useState
+} from 'react';
+import {
+  useForceUpdate
+} from './useForceUpdate';
+
+import Linked from './operator_panel/link-panel.js';
+import Humidity from './operator_panel/humidity.js';
+import WheaterUI from './operator_panel/wheater.js';
+import NavBar from './operator_panel/NavBar.js';
+import "./App.css"
+
+
+function App() {
+
+  const [data,
+    setData] = useState({
+      message: 'Hello, Flask!'
+    });
+
+  const forceUpdate = useForceUpdate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await sendData(data);
+    console.log(result);
+  };
+
+  const handleChange = (e) => {
+    setData({
+      ...data, [e.target.name]: e.target.value
+    });
+  };
+
+  const sendData = (data) => {
+    const response = fetch('/api/send_data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = response.json();
+    return result;
+  };
+  useEffect(() => {
+    forceUpdate();
+  }, []);
+
+  ///////////////////////
+  //     FUNGSI 2     //
+  /////////////////////
+
+  return(
+    <div>
+  <div class="blur"></div>
+    {/*<form onSubmit={handleSubmit}>
+      <input type="text" name="message" onChange={handleChange} />
+      <button type="submit">Send Data</button>
+    </form>*/}
+    <div>
+     <Humidity />
+     <div class="ui-wh">
+      <WheaterUI />
+    </div>
+    </div>
+      <div>
+      {/*<button value="data kamu" onChange={handleSubmit} onClick={handleChange}>submit</button>*/}
+      <Linked />
+    <div class="nav">
+      <NavBar />
+      </div>
+    </div>
+    <div class="blur2"></div>
+    <div class="blur3"></div>
+    <div class="blur4"></div>
+      {
+      /*<form onSubmit={handleSubmit2}>
+      <input type="text" name="message2" onChange={handleChange2} />
+      <button type="submit">Send Data2</button>
+      </form>*/
+      }
+    </div>
+
+  );
+}
+
+export default App;
+
+
+
+        ######Berikut percakapan dengan asisten AI. Asistennya bernama JarvisAI, sangat membantu, kreatif, pintar, sangat ramah, romantis. Assisten akan menjawab semua pertanyaan dan akan mencocokan makna pertanyaan dengan instruksi dibawah ini dan menjawab nya sesuai dengan instruksi dibawah:
+        1. periksa makna kalimat ${data}, jika memiliki makna yang sama untuk menyalakan lampu B dan lampu A maka balas hanya dengan "on lampu B on lampu A"
+        2. periksa makna kalimat ${data}, jika memiliki makna yang sama untuk memmatikan lampu B dan matikan lampu A maka balas hanya dengan "off lampu B off lampu A"
+        3. periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "nyalakan lampu ruangan tamu" maka balas hanya dengan ""on lampu Tamu""
+        4. periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "matikan lampu ruangan tamu" maka balas hanya dengan '"off lampu Tamu"'
+        5. periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "berapa suhu di kota" maka balas hanya dengan "suhu kota 24°C"
+        6. periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "nyalakan lampu kamar" maka balas hanya dengan "on lampu kamar"
+        7. periksa makna kalimat ${data}, jika memiliki makna yang sama dengan "matikan lampu ruangan kamar" maka balas hanya dengan "off lampu kamar"
+        8. periksa makna kalimat ${data}, jika memiliki makna yang sama untuk meminta suhu ruangan  maka balas hanya dengan "suhu ruangan saat ini 20°C"
+        \nHuman: ${data} \n\nAI:
