@@ -4,7 +4,7 @@ import React, {
 } from "react";
 import "./hum.css";
 import Cloud from "./cloud.js"
-import '../font-awesome/css/font-awesome.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 import axios from "axios";
 
 /*interface Props {
