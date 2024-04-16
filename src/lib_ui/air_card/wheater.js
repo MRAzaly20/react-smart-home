@@ -56,13 +56,13 @@ const Wheater = ({ label, isCek, onCheckboxChange, submit, title }) => {
                     </h3>
                     <h5 class='i-room'>humidity</h5>
                     <h3 class='hum-room2'>
-                        24<h3 class='deg-room2'>°C</h3>
+                        30<h3 class='deg-room2'>°C</h3>
                     </h3>
                     <h5 class='i-room2'>wheater</h5>
                     <h3 class='hum-room3'>
-                        24<h3 class='deg-room2'>°C</h3>
+                        100<h3 class='deg-room2'>pa</h3>
                     </h3>
-                    <h5 class='i-room3'>humidity</h5>
+                    <h5 class='i-room3'>pressure</h5>
                 </div>
             </div>
         </div>

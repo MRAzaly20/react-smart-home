@@ -61,6 +61,7 @@ const HumCard = ({ label, isCek, onCheckboxChange, submit, title }) => {
                     <div class='dt-cnt'>
                         <h5 class='date'>Friday, 17/02/23</h5>
                     </div>
+                    <h1>32 °C</h1>
                     <h6 class='info-wh'>sunny cloudy</h6>
                 </div>
             </div>
